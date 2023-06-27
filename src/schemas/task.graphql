@@ -1,0 +1,62 @@
+type Query
+{
+    getTasks(_id:ID):[Task]
+    createTask(input:TaskInput):Boolean!
+    getTaskInfo(_id:ID):Task
+    deleteTask(input:TaskDelete):Boolean!
+}
+type Mutation
+{
+    getAuth(input:Login):String!
+    createUser(input:SignUp):Boolean!
+    updateTask(input:TaskUpdate):Boolean!
+    completeTask(input:TaskValidate):Boolean!
+}
+input SignUp
+{
+    email:String!
+    password:String!
+    nombre:String!
+}
+input TaskValidate
+{
+    userId:ID
+    taskId:ID
+}
+input Login
+{
+    email:String!
+    password:String!
+}
+input TaskDelete
+{
+    idUsuario:ID
+    _id:ID
+}
+input TaskInput
+{
+    titulo:String!
+    descripcion:String!
+    fechaVencimiento:String
+    idUsuario:ID!
+}
+input TaskUpdate
+{
+    titulo:String
+    descripcion:String
+    fechaVencimiento:String
+    idUsuario:String!
+    _id:String!
+}
+type Task
+{
+    _id:ID
+    titulo:String!
+    descripcion:String
+    fechaVencimiento:String
+    estado:Boolean
+}
+type User
+{
+    nombre:String!
+}
